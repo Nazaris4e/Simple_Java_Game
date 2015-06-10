@@ -44,30 +44,30 @@ public class KeyInput extends KeyAdapter{
 	
 	if(key == KeyEvent.VK_UP){		
 		if(Game.menu.helpBtnActive){
-		Game.menu.playBtnActive = true;
+		Game.menu.contBtnActive = true;
 		Game.menu.helpBtnActive = false;
 		}
 		else if(Game.menu.quitBtnActive){
 			Game.menu.helpBtnActive = true;
 			Game.menu.quitBtnActive = false;
 		}
-		else if(!Game.menu.playBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
-		Game.menu.playBtnActive = true;
+		else if(!Game.menu.contBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
+		Game.menu.contBtnActive = true;
 	}
 	else if(key == KeyEvent.VK_DOWN){
 		if(Game.menu.helpBtnActive){
 		Game.menu.quitBtnActive = true;
 		Game.menu.helpBtnActive = false;
 		}
-		else if(Game.menu.playBtnActive){
+		else if(Game.menu.contBtnActive){
 			Game.menu.helpBtnActive = true;
-			Game.menu.playBtnActive = false;
+			Game.menu.contBtnActive = false;
 		}
-		else if(!Game.menu.playBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
-			Game.menu.playBtnActive = true;
+		else if(!Game.menu.contBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
+			Game.menu.contBtnActive = true;
 	}
 	else if(key == KeyEvent.VK_ENTER){		
-		if(Game.menu.playBtnActive) 
+		if(Game.menu.contBtnActive)
 			if(Game.hud.getLevel() == HUD.BossLevel)
 				Game.gameState = Game.STATE.Boss;
 			else

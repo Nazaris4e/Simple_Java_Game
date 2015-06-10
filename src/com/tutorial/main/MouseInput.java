@@ -9,36 +9,34 @@ public class MouseInput extends MouseAdapter {
 	public void mousePressed(MouseEvent e){
 		 int mx = e.getX();
 		 int my = e.getY();
-		// 	System.out.println("Pressed at X: " + mx + " Y: " + my);
 		 			// Menu Screen
 		 if(Game.gameState == Game.STATE.Menu){
-			 if(mouseOver(mx, my, 210, 150, 200, 64)){
-					if(Game.menu.playBtnActive) 
+			 if(mouseOver(mx, my, (int)Game.menu.contRect.getX(), (int)Game.menu.contRect.getY(), (int)Game.menu.contRect.getWidth(), (int)Game.menu.contRect.getHeight())){
+					if(Game.menu.contBtnActive)
 						if(Game.hud.getLevel() == HUD.BossLevel)
 							Game.gameState = Game.STATE.Boss;
 						else
 							Game.gameState = Game.STATE.Game;
 			 }
 			 else 
-				 if (mouseOver(mx, my, 210, 250, 200, 64)){
+				 if (mouseOver(mx, my, (int)Game.menu.helpRect.getX(), (int)Game.menu.helpRect.getY(), (int)Game.menu.helpRect.getWidth(), (int)Game.menu.helpRect.getHeight())){
 					Game.gameState = Game.STATE.Help;
 			 }
-			 else if(mouseOver(mx, my, 210, 350, 200, 64)){System.exit(1);
+			 else if(mouseOver(mx, my, (int)Game.menu.quitRect.getX(), (int)Game.menu.quitRect.getY(), (int)Game.menu.quitRect.getWidth(), (int)Game.menu.quitRect.getHeight())){System.exit(1);
 			 }			 
 		 }
 		 			// Help Screen
 		 else if(Game.gameState == Game.STATE.Help){
-				if (mouseOver(mx, my, 210, 350, 200, 64)){
-					Game.gameHandler.objectList.clear();
-					Game.gameState = Game.STATE.Menu; 
+				if (mouseOver(mx, my, (int) Game.help.backRect.getX(), (int) Game.help.backRect.getY(), (int) Game.help.backRect.getWidth(), (int) Game.help.backRect.getHeight())){
+					Game.gameState = Game.STATE.Menu;
 					}			
 			}
 		 			// End Screen
 		 else if(Game.gameState == Game.STATE.End){
-			 if(mouseOver(mx, my, 210, 250, 200, 64)){
+			 if(mouseOver(mx, my, (int)Game.end.againRect.getX(), (int)Game.end.againRect.getY(), (int)Game.end.againRect.getWidth(), (int)Game.end.againRect.getHeight())){
 				 Game.gameState = Game.STATE.NewGame;
 			 }
-			 else if(mouseOver(mx, my, 210, 350, 200, 64)){
+			 else if(mouseOver(mx, my, (int)Game.end.quitRect.getX(), (int)Game.end.quitRect.getY(), (int)Game.end.quitRect.getWidth(), (int)Game.end.quitRect.getHeight())){
 				 System.exit(1);
 			 }			 
 		 }	
@@ -48,11 +46,7 @@ public class MouseInput extends MouseAdapter {
 	
 
 	private boolean mouseOver(int mx, int my, int x, int y, int width, int height){
-		if(mx >= x && mx <= x + width && my >= y && my <= y + height)
-			return true;
-		else return false;
+		return (mx >= x && mx <= x + width && my >= y && my <= y + height);
 	}
 
-
-	
 }

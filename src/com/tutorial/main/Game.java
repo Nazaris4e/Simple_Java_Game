@@ -50,10 +50,8 @@ public class Game extends Canvas implements Runnable{
 		NewGame,
 		Boss,
 		End
-	};
+	}
 	
-
-
 	public synchronized void start(){
 		thread = new Thread(this);
 		thread.start();
@@ -98,13 +96,13 @@ public class Game extends Canvas implements Runnable{
 		}
 		stop();
 	}
-		
-		
+
 		private void tick(){
-			
+
 			if(gameState != oldState){ // goes only once when the gameState changes
 				oldState = gameState;
 				if (gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Help){
+					menuHandler.objectList.clear(); // in case if I'm changing Menu and Help back and forth
 					for(int j = 0; j < 14; j++){
 						menuHandler.addObject(new MenuParticle(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.MenuParticle));						
 					}		
@@ -132,10 +130,7 @@ public class Game extends Canvas implements Runnable{
 					sound.playBossMusic();
 				}
 			}
-			
-			
-			System.out.println("menuHandler length = " + menuHandler.objectList.size());
-			
+
 			if(gameState == STATE.Game || gameState == STATE.NewGame || gameState == STATE.Boss){
 				gameHandler.tick(); // change particles position only if it is Game
 				hud.tick();
@@ -189,9 +184,9 @@ public class Game extends Canvas implements Runnable{
 		
 	public static int clamp(int var, int min, int max){
 		if (var >= max)
-			return var = max;
+			return max;
 		else if (var <= min)
-			return var = min;
+			return min;
 		else
 			return var;
 	}
@@ -199,9 +194,9 @@ public class Game extends Canvas implements Runnable{
 	//for Boss speed (speed is double)
 	public static double clamp(double var, double min, double max){
 		if (var >= max)
-			return var = max;
+			return max;
 		else if (var <= min)
-			return var = min;
+			return min;
 		else
 			return var;
 	}

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class HUD {
 	
-	public static int HEALTH = 100;
+	public int HEALTH = 100;
 	public static int BossLevel = 7;
 	private int greenValue = 255;
 	
