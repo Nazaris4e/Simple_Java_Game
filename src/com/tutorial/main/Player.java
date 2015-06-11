@@ -39,6 +39,7 @@ public class Player extends GameObject{
 				if(getBounds().intersects(tempObject.getBounds())){
 					Game.hud.HEALTH += ((HealthCoin)tempObject).getHealthValue();
 					Game.gameHandler.removeObject(tempObject);
+					Game.sound.playHealthSound();
 				}
 			}
 		}
