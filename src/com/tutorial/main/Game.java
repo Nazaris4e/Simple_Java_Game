@@ -29,6 +29,7 @@ public class Game extends Canvas implements Runnable{
 		help = new Help();
 		hud = new HUD();
 		end = new EndScreen();
+		player = new Player(WIDTH/2-32,HEIGHT/2-32, ID.Player);
 		this.addKeyListener(new KeyInput());
 		this.addMouseListener(new MouseInput());
 		this.addMouseMotionListener(new MouseMove());
@@ -71,7 +72,7 @@ public class Game extends Canvas implements Runnable{
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-		int frames = 0;
+//		int frames = 0;
 		while(running){
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -82,12 +83,12 @@ public class Game extends Canvas implements Runnable{
 			}
 			if(running)
 				render();
-			frames++;
+//			frames++;
 			
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
 //				System.out.println("FPS: " + frames);
-				frames = 0;
+//				frames = 0;
 			}
 			
 		}
@@ -109,12 +110,12 @@ public class Game extends Canvas implements Runnable{
 				else if(gameState == STATE.NewGame){
 					gameHandler.objectList.clear(); // clear handler only if new game 
 					menuHandler.objectList.clear(); // clear handler only if new game 
-					player = new Player(WIDTH/2-32,HEIGHT/2-32, ID.Player);
 					gameHandler.addObject(player); // must do this only in state is New Game
 					gameHandler.addObject(new BasicEnemy(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.BasicEnemy));  // must do this only in state is New Game
 						hud.setLevel(1);
 						hud.setScore(0);
 						hud.HEALTH=100;
+
 						sound.playGameMusic();
 				}
 				else if(gameState == STATE.Game){
@@ -157,7 +158,6 @@ public class Game extends Canvas implements Runnable{
 			g.setColor(Color.black);
 			g.fillRect(0,0,WIDTH,HEIGHT);
 			
-			
 			if(gameState == STATE.Game || gameState == STATE.NewGame || gameState == STATE.Boss){
 				hud.render(g);			
 				gameHandler.render(g); // draw particles only if it is Game
@@ -174,7 +174,6 @@ public class Game extends Canvas implements Runnable{
 				end.render(g);
 			}
 
-			
 			g.dispose();
 			bs.show();
 		} // end render
@@ -198,8 +197,6 @@ public class Game extends Canvas implements Runnable{
 			return var;
 	}
 
-	
-	
 	public static void main(String[] args){
 		new Game();
 	}

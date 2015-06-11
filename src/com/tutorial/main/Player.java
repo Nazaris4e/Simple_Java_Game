@@ -2,13 +2,11 @@ package com.tutorial.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.util.Random;
 
 public class Player extends GameObject{
-	Random r = new Random();
-	
+	private int hurtCounter = 0;
+
 	public Player(int x, int y, ID id) {
 		super(x, y, id);
 	}
@@ -21,6 +19,8 @@ public class Player extends GameObject{
 		y = Game.clamp(y, 0, Game.HEIGHT-60);
 		collision();
 
+		if(hurtCounter > 0)
+			hurtCounter--;
 	}
 	private void collision(){
 		for(int i = 0; i < Game.gameHandler.objectList.size(); i++){
@@ -30,18 +30,27 @@ public class Player extends GameObject{
 					// collision code
 					Game.hud.HEALTH -= 2;
 					Game.sound.sayOuche();
+					hurtCounter = 30;
+					if(Game.hud.HEALTH == 0)
+						hurtCounter = 0;
+
 				}
 			}
 		}
 	}
 	
 	public void render(Graphics g){
-		
-		Graphics2D g2d = (Graphics2D) g;
-		
+
+		 // Makes player blink red when hurted
+	if(hurtCounter/5 == 5 || hurtCounter/5 == 3 || hurtCounter/5 == 1){
+		g.setColor(Color.red);
+		g.fillRect(x, y, 32, 32);
+	}
+	else{
 		g.setColor(Color.white);
 		g.fillRect(x, y, 32, 32);
 	}
+}
 
 	public Rectangle getBounds() {
 		return new Rectangle(x,y,32,32);
