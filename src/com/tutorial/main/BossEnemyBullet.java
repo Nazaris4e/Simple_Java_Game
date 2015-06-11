@@ -8,8 +8,8 @@ import java.util.Random;
 public class BossEnemyBullet extends GameObject{
 
 	private Random r = new Random();
-	public BossEnemyBullet(int x, int y, ID id) {
-		super(x, y, id);
+	public BossEnemyBullet(int x, int y, ID id, Handler myHandler) {
+		super(x, y, id, myHandler);
 		velX = r.nextInt(10)-5;
 		velY = 5;
 		Game.sound.playBossShot();

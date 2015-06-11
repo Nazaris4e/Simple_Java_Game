@@ -8,8 +8,8 @@ public class SmartEnemy extends GameObject{
 
 	private GameObject player;
 	
-	public SmartEnemy(int x, int y, ID id) {
-		super(x, y, id);
+	public SmartEnemy(int x, int y, ID id, Handler myHandler) {
+		super(x, y, id, myHandler);
 	
 		for(int i = 0; i < Game.gameHandler.objectList.size(); i++)
 			if (Game.gameHandler.objectList.get(i).getId() == ID.Player)

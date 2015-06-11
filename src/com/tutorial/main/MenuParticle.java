@@ -12,8 +12,8 @@ public class MenuParticle extends GameObject{
 	private Random r = new Random();
 	private Color color;
 	
-	public MenuParticle(int x, int y, ID id) {
-		super(x, y, id);
+	public MenuParticle(int x, int y, ID id, Handler myHandler) {
+		super(x, y, id, myHandler);
 		velX = r.nextInt(8)-4;
 		velY = r.nextInt(8)-4;
 		if(velX < 0) velX-=2;

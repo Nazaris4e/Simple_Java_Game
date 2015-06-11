@@ -10,12 +10,10 @@ public class BossEnemy extends GameObject{
 	private int timer=0;
 	private Random r = new Random();
 	
-	public BossEnemy(int x, int y, ID id) {
-		super(x, y, id);
+	public BossEnemy(int x, int y, ID id, Handler myHandler) {
+		super(x, y, id, myHandler);
 		velX = 0.0;
 		velY = 2.0;
-//		Game.sound.stopGameMusic();
-//		Game.sound.playBossMusic();
 	}
 
 
@@ -29,7 +27,7 @@ public class BossEnemy extends GameObject{
 			velX *= 1.001;
 			velX = Game.clamp(velX, -10.0, 10.0);
 			int spawn = r.nextInt((int)(100/Math.abs(velX))); // the faster he goes the more bullets he throws
-			if (spawn == 0) Game.gameHandler.addObject(new BossEnemyBullet((int)(x+48), (int)(y+86), ID.BasicEnemy));
+			if (spawn == 0) Game.gameHandler.addObject(new BossEnemyBullet(x+48, y+86, ID.BasicEnemy, Game.gameHandler));
 			}
 		else if(timer++ >=150 ) velY = 0;
 		//turn around:

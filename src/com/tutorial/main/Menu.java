@@ -8,31 +8,19 @@ public class Menu {
 	public boolean helpBtnActive = false;
 	public boolean quitBtnActive = false;
 
-	public Rectangle contRect;
-	public Rectangle newRect;
-	public Rectangle helpRect;
-	public Rectangle quitRect;
-	private Point pausedPos;
-	private Point contPos;
-	private Point newPos;
-	private Point helpPos;
-	private Point quitPos;
+	public Rectangle contRect = new Rectangle(-10000, -10000, 1, 1); // Take it away from the screen
+	public Rectangle newRect = new Rectangle(210, 150, 200, 64);
+	public Rectangle helpRect = new Rectangle(210, 250, 200, 64);
+	public Rectangle quitRect = new Rectangle(210, 350, 200, 64);
+	private Point pausedPos = new Point(243, 70);
+	private Point contPos = new Point(-10000, -10000); // take it away from the screen
+	private Point newPos = new Point(237, 193);
+	private Point helpPos = new Point(275, 293);
+	private Point quitPos = new Point(275, 393);
 	public void tick(){
 
-						//If Game just starts
-		if(Game.gameHandler.objectList.size() == 0){
-			contRect = new Rectangle(-10000, -10000, 1, 1); // Take it away from the screen
-			newRect = new Rectangle(210, 150, 200, 64);
-			helpRect = new Rectangle(210, 250, 200, 64);
-			quitRect = new Rectangle(210, 350, 200, 64);
-			pausedPos = new Point(243, 70);
-			contPos = new Point(-10000, -10000); // take it away from the screen
-			newPos = new Point(237, 193);
-			helpPos = new Point(275, 293);
-			quitPos = new Point(275, 393);
-		}
 						//If Game is paused
-		else {
+		if(Game.gameHandler.objectList.size() != 0){
 			contRect = new Rectangle(210, 120, 200, 64);
 			newRect = new Rectangle(210, 200, 200, 64);
 			helpRect = new Rectangle(210, 280, 200, 64);
@@ -43,7 +31,6 @@ public class Menu {
 			helpPos = new Point(275, 323);
 			quitPos = new Point(275, 403);
 		}
-
 
 	}
 	public void render(Graphics g){

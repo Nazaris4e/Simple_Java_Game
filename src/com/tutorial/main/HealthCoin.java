@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class HealthCoin extends GameObject{
     private int healthValue;
-    public HealthCoin(int x, int y, ID id, int healthValue) {
-        super(x, y, id);
+    public HealthCoin(int x, int y, ID id, int healthValue, Handler myHandler) {
+        super(x, y, id, myHandler);
         velX = 0;
         velY = 0;
         this.healthValue = healthValue;

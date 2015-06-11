@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 
 public class BasicEnemy extends GameObject{
 	
-	public BasicEnemy(int x, int y, ID id) {
-		super(x, y, id);
+	public BasicEnemy(int x, int y, ID id, Handler myHandler) {
+		super(x, y, id, myHandler);
 		velX = 5;
 		velY = 5;
 	}

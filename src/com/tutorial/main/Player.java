@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 public class Player extends GameObject{
 	private int hurtCounter = 0;
 
-	public Player(int x, int y, ID id) {
-		super(x, y, id);
+	public Player(int x, int y, ID id, Handler myHandler) {
+		super(x, y, id, myHandler);
 	}
 	
 	public void tick(){

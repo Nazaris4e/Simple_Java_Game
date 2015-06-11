@@ -11,8 +11,8 @@ public class Game extends Canvas implements Runnable{
 	public static STATE gameState = STATE.Menu;
 	private STATE oldState;
 	private Random r = new Random();
-	public static Handler gameHandler = new Handler();
-	public static Handler menuHandler = new Handler();
+	public static Handler gameHandler;
+	public static Handler menuHandler;
 	private static final long serialVersionUID = 1550691097823471818L;
 	public static final int WIDTH = 640, HEIGHT = 480;
 	private Thread thread;
@@ -25,11 +25,13 @@ public class Game extends Canvas implements Runnable{
 	public static Player player;
 	public static Sound sound;
 	public Game() {
+		gameHandler = new Handler();
+		menuHandler = new Handler();
 		menu = new Menu();
 		help = new Help();
 		hud = new HUD();
 		end = new EndScreen();
-		player = new Player(WIDTH/2-32,HEIGHT/2-32, ID.Player);
+		player = new Player(WIDTH/2-32,HEIGHT/2-32, ID.Player, gameHandler);
 		this.addKeyListener(new KeyInput());
 		this.addMouseListener(new MouseInput());
 		this.addMouseMotionListener(new MouseMove());
@@ -102,7 +104,7 @@ public class Game extends Canvas implements Runnable{
 				if (gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Help){
 					menuHandler.objectList.clear(); // in case if I'm changing Menu and Help back and forth
 					for(int j = 0; j < 14; j++){
-						menuHandler.addObject(new MenuParticle(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.MenuParticle));						
+						menuHandler.addObject(new MenuParticle(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.MenuParticle, menuHandler));
 					}		
 				sound.stopGameMusic();
 				sound.stopBossMusic();
@@ -111,7 +113,7 @@ public class Game extends Canvas implements Runnable{
 					gameHandler.objectList.clear(); // clear handler only if new game 
 					menuHandler.objectList.clear(); // clear handler only if new game 
 					gameHandler.addObject(player); // must do this only in state is New Game
-					gameHandler.addObject(new BasicEnemy(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.BasicEnemy));  // must do this only in state is New Game
+					gameHandler.addObject(new BasicEnemy(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.BasicEnemy, gameHandler));  // must do this only in state is New Game
 						hud.setLevel(1);
 						hud.setScore(0);
 						hud.HEALTH=100;

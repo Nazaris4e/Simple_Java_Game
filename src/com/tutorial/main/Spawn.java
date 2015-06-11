@@ -11,29 +11,29 @@ public class Spawn {
 		if(Game.hud.getLevel() != prevLevel){ // do only when level changes
 			prevLevel = Game.hud.getLevel();
 		if(Game.hud.getLevel() == 2)
-			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy));
+			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy, Game.gameHandler));
 				else if(Game.hud.getLevel() == 3){
-			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy));
-			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy));
+			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy, Game.gameHandler));
+			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy, Game.gameHandler));
 		}
 		else if(Game.hud.getLevel() == 4){
-			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.FastEnemy));
+			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.FastEnemy, Game.gameHandler));
 		}
 		else if(Game.hud.getLevel() == 5){
-			Game.gameHandler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.SmartEnemy));
+			Game.gameHandler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.SmartEnemy, Game.gameHandler));
 		}
 		else if(Game.hud.getLevel() == 6){
-			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.FastEnemy));
+			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.FastEnemy, Game.gameHandler));
 		}
 		else  if(Game.gameState == Game.STATE.Boss){
 
 			
 			Game.gameHandler.clearEnemies();
 			
-				Game.gameHandler.addObject(new BossEnemy(Game.WIDTH/2-48,-100, ID.BasicEnemy));
+				Game.gameHandler.addObject(new BossEnemy(Game.WIDTH/2-48,-100, ID.BossEnemy, Game.gameHandler));
 		}
-		
-		
+
+
 }
 	}
 }

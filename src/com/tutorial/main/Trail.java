@@ -12,17 +12,15 @@ public class Trail extends GameObject{
 	private Color color;
 	private int width, height;
 	private float transparencyDecrease;
-	private Handler myHandler;
-	
+
 	
 	public Trail(int x, int y, ID id, Color color, int width, int height, float transparency, float transparencyDecrease, Handler myHandler) {
-		super(x, y, id);
+		super(x, y, id, myHandler);
 		this.color = color;
 		this.width = width;
 		this.height = height;
 		this.transparency = transparency;
 		this.transparencyDecrease = transparencyDecrease;
-		this.myHandler = myHandler;
 	}
 
 	public void tick() {
