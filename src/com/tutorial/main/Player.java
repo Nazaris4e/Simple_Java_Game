@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 
 public class Player extends GameObject{
 	private int hurtCounter = 0;
+	private int healCounter = 0;
 
 	public Player(int x, int y, ID id, Handler myHandler) {
 		super(x, y, id, myHandler);
@@ -21,6 +22,8 @@ public class Player extends GameObject{
 
 		if(hurtCounter > 0)
 			hurtCounter--;
+		if(healCounter > 0)
+			healCounter--;
 	}
 	private void collision(){
 		for(int i = 0; i < Game.gameHandler.objectList.size(); i++){
@@ -40,6 +43,9 @@ public class Player extends GameObject{
 					Game.hud.HEALTH += ((HealthCoin)tempObject).getHealthValue();
 					Game.gameHandler.removeObject(tempObject);
 					Game.sound.playHealthSound();
+					healCounter = 30;
+					if(Game.hud.HEALTH == 0)
+						healCounter = 0;
 				}
 			}
 		}
@@ -47,18 +53,31 @@ public class Player extends GameObject{
 	
 	public void render(Graphics g){
 
-		 // Makes player blink red when hurted
-	if(hurtCounter/5 == 5 || hurtCounter/5 == 3 || hurtCounter/5 == 1){
-		g.setColor(Color.red);
-		g.fillRect(x, y, 32, 32);
-	}
-	else{
-		g.setColor(Color.white);
-		g.fillRect(x, y, 32, 32);
-	}
+		if(hurtCounter > 0)
+			blinkRed(g, hurtCounter);
+		else if(healCounter > 0)
+			blinkGreen(g, healCounter);
+		else
+		{
+			g.setColor(Color.white);
+			g.fillRect(x, y, 32, 32);
+		}
 }
-
 	public Rectangle getBounds() {
 		return new Rectangle(x,y,32,32);
 	}
+
+	private void blinkRed(Graphics g, int hurtCounter){
+		if(hurtCounter/5 == 5 || hurtCounter/5 == 3 || hurtCounter/5 == 1){
+			g.setColor(Color.red);
+			g.fillRect(x, y, 32, 32);
+		}
+	}
+	private void blinkGreen(Graphics g, int healCounter){
+		if(healCounter/5 == 5 || healCounter/5 == 3 || healCounter/5 == 1){
+			g.setColor(Color.green);
+			g.fillRect(x, y, 32, 32);
+		}
+	}
 }
+
