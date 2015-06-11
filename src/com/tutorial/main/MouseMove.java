@@ -10,8 +10,6 @@ public class MouseMove extends MouseAdapter{
 		
 		mx = e.getX();
 		my = e.getY();
-		
-		//System.out.println("X: " + mx + " Y: " + my);
 
 		clearActiveButtons();
 				// Game Screen
@@ -25,7 +23,11 @@ public class MouseMove extends MouseAdapter{
 		 if(mouseOver(mx, my, (int)Game.menu.contRect.getX(), (int)Game.menu.contRect.getY(), (int)Game.menu.contRect.getWidth(), (int)Game.menu.contRect.getHeight())){
 			Game.menu.contBtnActive = true;
 		 }
-		 else 
+		 else
+		 if (mouseOver(mx, my, (int)Game.menu.newRect.getX(), (int)Game.menu.newRect.getY(), (int)Game.menu.newRect.getWidth(), (int)Game.menu.newRect.getHeight())){
+			 Game.menu.newBtnActive = true;
+		 }
+		 else
 			 if (mouseOver(mx, my, (int)Game.menu.helpRect.getX(), (int)Game.menu.helpRect.getY(), (int)Game.menu.helpRect.getWidth(), (int)Game.menu.helpRect.getHeight())){
 					Game.menu.helpBtnActive = true;
 		 }
@@ -61,6 +63,7 @@ public class MouseMove extends MouseAdapter{
 
 	private void clearActiveButtons(){
 		Game.menu.contBtnActive = false;
+		Game.menu.newBtnActive = false;
 		Game.menu.helpBtnActive = false;
 		Game.menu.quitBtnActive = false;
 		Game.help.backBtnActive = false;

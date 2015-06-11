@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
 	
-	public static STATE gameState = STATE.NewGame;
+	public static STATE gameState = STATE.Menu;
 	private STATE oldState;
 	private Random r = new Random();
 	public static Handler gameHandler = new Handler();
@@ -35,14 +35,11 @@ public class Game extends Canvas implements Runnable{
 		spawn = new Spawn();
 		sound = new Sound();
 
-		
-		
 		//sets a JFrame and starts the game:
 		new Window(WIDTH, HEIGHT, "Let's Build a Game!", this);
 
 	}
 
-	
 	public enum STATE {
 		Menu,
 		Help,
@@ -108,7 +105,7 @@ public class Game extends Canvas implements Runnable{
 					}		
 				sound.stopGameMusic();
 				sound.stopBossMusic();
-				}	
+				}
 				else if(gameState == STATE.NewGame){
 					gameHandler.objectList.clear(); // clear handler only if new game 
 					menuHandler.objectList.clear(); // clear handler only if new game 

@@ -18,7 +18,11 @@ public class MouseInput extends MouseAdapter {
 						else
 							Game.gameState = Game.STATE.Game;
 			 }
-			 else 
+			 else
+			 if (mouseOver(mx, my, (int)Game.menu.newRect.getX(), (int)Game.menu.newRect.getY(), (int)Game.menu.newRect.getWidth(), (int)Game.menu.newRect.getHeight())){
+				 Game.gameState = Game.STATE.NewGame;
+			 }
+			 else
 				 if (mouseOver(mx, my, (int)Game.menu.helpRect.getX(), (int)Game.menu.helpRect.getY(), (int)Game.menu.helpRect.getWidth(), (int)Game.menu.helpRect.getHeight())){
 					Game.gameState = Game.STATE.Help;
 			 }

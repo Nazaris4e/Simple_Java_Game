@@ -28,7 +28,7 @@ public class Player extends GameObject{
 			if(tempObject.id == ID.BasicEnemy || tempObject.id == ID.FastEnemy || tempObject.id == ID.SmartEnemy){
 				if(getBounds().intersects(tempObject.getBounds())){
 					// collision code
-					HUD.HEALTH -= 2;
+					Game.hud.HEALTH -= 2;
 					Game.sound.sayOuche();
 				}
 			}

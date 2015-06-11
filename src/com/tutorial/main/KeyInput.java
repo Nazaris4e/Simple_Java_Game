@@ -42,29 +42,46 @@ public class KeyInput extends KeyAdapter{
 	if(key == KeyEvent.VK_ESCAPE) 
 		System.exit(1);
 	
-	if(key == KeyEvent.VK_UP){		
-		if(Game.menu.helpBtnActive){
-		Game.menu.contBtnActive = true;
-		Game.menu.helpBtnActive = false;
+	if(key == KeyEvent.VK_UP){
+		if(Game.menu.newBtnActive){
+			if(Game.gameHandler.objectList.size() != 0) { // if Continue button is on the screen
+				Game.menu.contBtnActive = true;
+				Game.menu.newBtnActive = false;
+			}
+		}
+		else if(Game.menu.helpBtnActive){
+				Game.menu.newBtnActive = true;
+				Game.menu.helpBtnActive = false;
 		}
 		else if(Game.menu.quitBtnActive){
 			Game.menu.helpBtnActive = true;
 			Game.menu.quitBtnActive = false;
 		}
-		else if(!Game.menu.contBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
-		Game.menu.contBtnActive = true;
+		else if(!Game.menu.contBtnActive && !Game.menu.newBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
+			if(Game.gameHandler.objectList.size() != 0) // if Continue button is on the screen
+				Game.menu.contBtnActive = true;
+			else
+				Game.menu.newBtnActive = true;
 	}
+
 	else if(key == KeyEvent.VK_DOWN){
 		if(Game.menu.helpBtnActive){
-		Game.menu.quitBtnActive = true;
-		Game.menu.helpBtnActive = false;
+			Game.menu.quitBtnActive = true;
+			Game.menu.helpBtnActive = false;
+		}
+		else if(Game.menu.newBtnActive){
+				Game.menu.helpBtnActive = true;
+				Game.menu.newBtnActive = false;
 		}
 		else if(Game.menu.contBtnActive){
-			Game.menu.helpBtnActive = true;
-			Game.menu.contBtnActive = false;
+				Game.menu.newBtnActive = true;
+				Game.menu.contBtnActive = false;
 		}
-		else if(!Game.menu.contBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
-			Game.menu.contBtnActive = true;
+		else if(!Game.menu.contBtnActive && !Game.menu.newBtnActive && !Game.menu.helpBtnActive && !Game.menu.quitBtnActive)
+				if(Game.gameHandler.objectList.size() != 0) // if Continue button is on the screen
+					Game.menu.contBtnActive = true;
+				else
+					Game.menu.newBtnActive = true;
 	}
 	else if(key == KeyEvent.VK_ENTER){		
 		if(Game.menu.contBtnActive)
@@ -72,6 +89,7 @@ public class KeyInput extends KeyAdapter{
 				Game.gameState = Game.STATE.Boss;
 			else
 				Game.gameState = Game.STATE.Game;
+		else if(Game.menu.newBtnActive) Game.gameState = STATE.NewGame;
 		else if(Game.menu.helpBtnActive) Game.gameState = Game.STATE.Help;
 		else if(Game.menu.quitBtnActive) System.exit(1);
 	}
