@@ -33,7 +33,12 @@ public class Player extends GameObject{
 					hurtCounter = 30;
 					if(Game.hud.HEALTH == 0)
 						hurtCounter = 0;
-
+				}
+			}
+			else if(tempObject.id == ID.HealthCoin){
+				if(getBounds().intersects(tempObject.getBounds())){
+					Game.hud.HEALTH += ((HealthCoin)tempObject).getHealthValue();
+					Game.gameHandler.removeObject(tempObject);
 				}
 			}
 		}
