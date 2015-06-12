@@ -24,6 +24,7 @@ public class Game extends Canvas implements Runnable{
 	public static EndScreen end;
 	public static Player player;
 	public static Sound sound;
+	public static ScoreManager scoreManager;
 	public Game() {
 		gameHandler = new Handler();
 		menuHandler = new Handler();
@@ -37,6 +38,7 @@ public class Game extends Canvas implements Runnable{
 		this.addMouseMotionListener(new MouseMove());
 		spawn = new Spawn();
 		sound = new Sound();
+		scoreManager = new ScoreManager();
 
 		//sets a JFrame and starts the game:
 		new Window(WIDTH, HEIGHT, "Let's Build a Game!", this);
@@ -108,6 +110,14 @@ public class Game extends Canvas implements Runnable{
 					}		
 				sound.stopGameMusic();
 				sound.stopBossMusic();
+
+					if(gameState == STATE.End){
+						if(scoreManager.updateScore(new Score(hud.getScore()))) // updated score in the file score.dat
+							end.setHighScoreString("New Record!");
+						else
+							end.setHighScoreString("HighScore:");
+						end.setHighScore(scoreManager.getHighScore());
+					}
 				}
 				else if(gameState == STATE.NewGame){
 					gameHandler.objectList.clear(); // clear handler only if new game 

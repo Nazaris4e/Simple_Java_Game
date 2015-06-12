@@ -11,11 +11,14 @@ public class EndScreen {
 	public Rectangle againRect = new Rectangle(210, 250, 200, 64);
 	public Rectangle quitRect = new Rectangle(210, 350, 200, 64);
 	private Point overPos = new Point(190, 70);
-	private Point yourScorePos = new Point(220, 143);
-	private Point scorePos = new Point(290, 183);
+	private Point yourScorePos = new Point(220, 140);
+	private Point scorePos = new Point(360, 143);
+	private Point highScorePos = new Point(220, 180);
+	private Point highScoreValuePos = new Point(360, 183);
 	private Point againPos = new Point(240, 293);
 	private Point quitPos = new Point(275, 393);
-
+	private String highScoreString = "HighScore:";
+	private int highScoreValue = 0;
 
 	public void tick() {
 
@@ -24,13 +27,20 @@ public class EndScreen {
 	public void render(Graphics g) {
 		Font fnt = new Font("arial", Font.PLAIN, 50);
 		Font fnt2 = new Font("arial", Font.PLAIN, 30);
+		Font fnt3 = new Font("arial", Font.PLAIN, 18);
 		g.setFont(fnt);
 		g.setColor(Color.white);
 		g.drawString("Game over", (int) overPos.getX(), (int) overPos.getY());
 
-		g.setFont(fnt2);
+		g.setFont(fnt3);
 		g.drawString("Your Score is:", (int) yourScorePos.getX(), (int) yourScorePos.getY());
+		g.setFont(fnt2);
 		g.drawString("" + Game.hud.getScore(), (int) scorePos.getX(), (int) scorePos.getY());
+
+		g.setFont(fnt3);
+		g.drawString(highScoreString, (int) highScorePos.getX(), (int) highScorePos.getY());
+		g.setFont(fnt2);
+		g.drawString("" + highScoreValue, (int) highScoreValuePos.getX(), (int) highScoreValuePos.getY());
 
 		g.setColor(Color.white);
 		if (againBtnActive) {
@@ -47,5 +57,12 @@ public class EndScreen {
 		}
 		g.drawString("Quit", (int) quitPos.getX(), (int) quitPos.getY());
 		g.drawRect((int) quitRect.getX(), (int) quitRect.getY(), (int) quitRect.getWidth(), (int) quitRect.getHeight());
+	}
+
+	public void setHighScore(int highScoreValue){
+		this.highScoreValue = highScoreValue;
+	}
+	public void setHighScoreString(String highScoreString){
+		this.highScoreString = highScoreString;
 	}
 }
