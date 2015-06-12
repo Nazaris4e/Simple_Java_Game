@@ -12,6 +12,8 @@ public class BossEnemyBullet extends GameObject{
 		super(x, y, id, myHandler);
 		velX = r.nextInt(10)-5;
 		velY = 5;
+		width = 16;
+		height = 16;
 		Game.sound.playBossShot();
 	}
 
@@ -19,22 +21,16 @@ public class BossEnemyBullet extends GameObject{
 		x += velX;
 		y += velY;
 		
-		Game.gameHandler.addObject(new Trail(x, y, ID.Trail, Color.red, 16, 16, 1.0f, 0.02f, Game.gameHandler));
+		Game.gameHandler.addObject(new Trail(x, y, ID.Trail, Color.red, width, height, 1.0f, 0.02f, Game.gameHandler));
 
 		if(y >= Game.HEIGHT)
 			Game.gameHandler.removeObject(this);
 		
 	}
 
-
 	public void render(Graphics g) {
 		g.setColor(Color.red);
-		g.fillRect(x,y,16,16);
+		g.fillRect(x, y, width, height);
 	}
 
-	public Rectangle getBounds() {
-		return new Rectangle(x,y,16,16);
-	}
-
-	
 }

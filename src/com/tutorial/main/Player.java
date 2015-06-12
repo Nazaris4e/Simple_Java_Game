@@ -8,14 +8,16 @@ public class Player extends GameObject{
 	private int healCounter = 0;
 	public Player(int x, int y, ID id, Handler myHandler) {
 		super(x, y, id, myHandler);
+		height = 32;
+		width = 32;
 	}
 
 	public void tick(){
 		x += velX;
 		y += velY;
 
-		x = Game.clamp(x, 0, Game.WIDTH-32);
-		y = Game.clamp(y, 0, Game.HEIGHT-60);
+		x = Game.clamp(x, 0, Game.WIDTH-width);
+		y = Game.clamp(y, 0, Game.HEIGHT-2*height);
 		collision();
 		if(hurtCounter > 0)
 			hurtCounter--;
@@ -64,22 +66,20 @@ public class Player extends GameObject{
 		else
 		{
 			g.setColor(Color.white);
-			g.fillRect(x, y, 32, 32);
+			g.fillRect(x, y, width, height);
 		}
 	}
-	public Rectangle getBounds() {
-		return new Rectangle(x,y,32,32);
-	}
+
 	private void blinkRed(Graphics g, int hurtCounter){
 		if(hurtCounter/5 == 5 || hurtCounter/5 == 3 || hurtCounter/5 == 1){
 			g.setColor(Color.red);
-			g.fillRect(x, y, 32, 32);
+			g.fillRect(x, y, width, height);
 		}
 	}
 	private void blinkGreen(Graphics g, int healCounter){
 		if(healCounter/5 == 5 || healCounter/5 == 3 || healCounter/5 == 1){
 			g.setColor(Color.green);
-			g.fillRect(x, y, 32, 32);
+			g.fillRect(x, y, width, height);
 		}
 	}
 }

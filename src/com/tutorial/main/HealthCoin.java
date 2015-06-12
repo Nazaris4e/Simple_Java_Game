@@ -8,6 +8,8 @@ public class HealthCoin extends GameObject{
         super(x, y, id, myHandler);
         velX = 0;
         velY = 0;
+        width = 32;
+        height = 32;
         this.healthValue = healthValue;
     }
     public int getHealthValue(){
@@ -25,13 +27,10 @@ public class HealthCoin extends GameObject{
             {
             g.setColor(Color.white);
             g.drawString(Integer.toString(healthValue), x+8, y-5);
-            g.fillRect(x,y,32,32);
+            g.fillRect(x, y, width, height);
             g.setColor(Color.red);
             g.fillRect(x+2,y+11,28,9);
             g.fillRect(x+11,y+2,9,28);
         }
-    }
-    public Rectangle getBounds() {
-        return new Rectangle(x,y,32,32);
     }
 }

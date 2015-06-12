@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 
 public abstract class GameObject {
 
-	protected int x, y;
+	protected int x, y, height, width;
 	protected ID id;
 	protected double velX, velY;
 	protected Handler myHandler;
@@ -19,7 +19,6 @@ public abstract class GameObject {
 
 	public abstract void tick();
 	public abstract void render(Graphics g);
-	public abstract Rectangle getBounds();
 
 	public void setX(int x) {
 		this.x = x;
@@ -51,5 +50,6 @@ public abstract class GameObject {
 	public double getVelY(){
 		return velY;
 	}
+	public Rectangle getBounds(){return new Rectangle(x, y, width, height);}
 	
 }
