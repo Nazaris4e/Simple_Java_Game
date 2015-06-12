@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class HealthCoin extends GameObject{
     private int healthValue;
+    private int lifeTime = 750;
     public HealthCoin(int x, int y, ID id, int healthValue, Handler myHandler) {
         super(x, y, id, myHandler);
         velX = 0;
@@ -13,16 +14,22 @@ public class HealthCoin extends GameObject{
         return healthValue;
     }
     public void tick() {
+        if(lifeTime > 0)
+            lifeTime--;
+        else
+            myHandler.removeObject(this);
     }
     public void render(Graphics g) {
-        g.setColor(Color.white);
-        g.drawString(Integer.toString(healthValue), x+8, y-5);
 
-        g.fillRect(x,y,32,32);
-        g.setColor(Color.red);
-        g.fillRect(x+2,y+11,28,9);
-        g.fillRect(x+11,y+2,9,28);
-
+        if(lifeTime/25 != 11 && lifeTime/25 != 9 && lifeTime/25 != 7 && lifeTime/25 != 5 && lifeTime/25 != 3 && lifeTime/25 != 1)
+            {
+            g.setColor(Color.white);
+            g.drawString(Integer.toString(healthValue), x+8, y-5);
+            g.fillRect(x,y,32,32);
+            g.setColor(Color.red);
+            g.fillRect(x+2,y+11,28,9);
+            g.fillRect(x+11,y+2,9,28);
+        }
     }
     public Rectangle getBounds() {
         return new Rectangle(x,y,32,32);
