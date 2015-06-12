@@ -18,6 +18,10 @@ public class EndScreen {
 	private Point againPos = new Point(240, 293);
 	private Point quitPos = new Point(275, 393);
 	private String highScoreString = "HighScore:";
+	private String gameOverString = "Game Over";
+	private String yourScoreString = "Your Score is:";
+	private String playAgainString = "Play Again";
+	private String quitString = "Quit";
 	private int highScoreValue = 0;
 
 	public void tick() {
@@ -30,10 +34,10 @@ public class EndScreen {
 		Font fnt3 = new Font("arial", Font.PLAIN, 18);
 		g.setFont(fnt);
 		g.setColor(Color.white);
-		g.drawString("Game over", (int) overPos.getX(), (int) overPos.getY());
+		g.drawString(gameOverString, (int) overPos.getX(), (int) overPos.getY());
 
 		g.setFont(fnt3);
-		g.drawString("Your Score is:", (int) yourScorePos.getX(), (int) yourScorePos.getY());
+		g.drawString(yourScoreString, (int) yourScorePos.getX(), (int) yourScorePos.getY());
 		g.setFont(fnt2);
 		g.drawString("" + Game.hud.getScore(), (int) scorePos.getX(), (int) scorePos.getY());
 
@@ -47,7 +51,7 @@ public class EndScreen {
 			g.fillRect((int) againRect.getX(), (int) againRect.getY(), (int) againRect.getWidth(), (int) againRect.getHeight());
 			g.setColor(Color.black);
 		}
-		g.drawString("Play Again", (int) againPos.getX(), (int) againPos.getY());
+		g.drawString(playAgainString, (int) againPos.getX(), (int) againPos.getY());
 		g.drawRect((int) againRect.getX(), (int) againRect.getY(), (int) againRect.getWidth(), (int) againRect.getHeight());
 
 		g.setColor(Color.white);
@@ -55,7 +59,7 @@ public class EndScreen {
 			g.fillRect((int) quitRect.getX(), (int) quitRect.getY(), (int) quitRect.getWidth(), (int) quitRect.getHeight());
 			g.setColor(Color.black);
 		}
-		g.drawString("Quit", (int) quitPos.getX(), (int) quitPos.getY());
+		g.drawString(quitString, (int) quitPos.getX(), (int) quitPos.getY());
 		g.drawRect((int) quitRect.getX(), (int) quitRect.getY(), (int) quitRect.getWidth(), (int) quitRect.getHeight());
 	}
 

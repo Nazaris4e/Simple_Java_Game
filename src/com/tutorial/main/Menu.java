@@ -17,9 +17,18 @@ public class Menu {
 	private Point newPos = new Point(237, 193);
 	private Point helpPos = new Point(275, 293);
 	private Point quitPos = new Point(275, 393);
+	Font fnt = new Font("arial", Font.PLAIN, 50);
+	Font fnt2 = new Font("arial", Font.PLAIN, 30);
+	private String menuString = "Menu";
+	private String contString = "Continue";
+	private String newString = "New Game";
+	private String helpString = "Help";
+	private String quitString = "Quit";
+
+
 	public void tick(){
 
-						//If Game is paused
+			//If Game is paused
 		if(Game.gameHandler.objectList.size() != 0){
 			contRect = new Rectangle(210, 120, 200, 64);
 			newRect = new Rectangle(210, 200, 200, 64);
@@ -35,15 +44,9 @@ public class Menu {
 	}
 	public void render(Graphics g){
 
-		Font fnt = new Font("arial", Font.PLAIN, 50);
-		Font fnt2 = new Font("arial", Font.PLAIN, 30);
 		g.setFont(fnt);
 		g.setColor(Color.white);
-		if(Game.gameHandler.objectList.size() != 0)
-			g.drawString("Paused", (int)pausedPos.getX(), (int)pausedPos.getY());
-		else
-			g.drawString("Menu", (int) pausedPos.getX(), (int) pausedPos.getY());
-
+		g.drawString(menuString, (int) pausedPos.getX(), (int) pausedPos.getY());
 		g.setFont(fnt2);
 
 		
@@ -60,30 +63,34 @@ public class Menu {
 		g.drawRect((int)quitRect.getX(), (int)quitRect.getY(), (int)quitRect.getWidth(), (int)quitRect.getHeight());
 
 
-		g.drawString("Continue", (int)contPos.getX(), (int)contPos.getY());
-		g.drawString("New Game", (int)newPos.getX(), (int)newPos.getY());
-		g.drawString("Help", (int) helpPos.getX(), (int) helpPos.getY());
-		g.drawString("Quit", (int)quitPos.getX(), (int)quitPos.getY());
+		g.drawString(contString, (int)contPos.getX(), (int)contPos.getY());
+		g.drawString(newString, (int)newPos.getX(), (int)newPos.getY());
+		g.drawString(helpString, (int) helpPos.getX(), (int) helpPos.getY());
+		g.drawString(quitString, (int)quitPos.getX(), (int)quitPos.getY());
 
 		if(contBtnActive){
 			g.fillRect((int)contRect.getX(), (int)contRect.getY(), (int)contRect.getWidth(), (int)contRect.getHeight());
 			g.setColor(Color.black);
-			g.drawString("Continue", (int)contPos.getX(), (int)contPos.getY());
+			g.drawString(contString, (int)contPos.getX(), (int)contPos.getY());
 		}
 		else if(newBtnActive){
 			g.fillRect((int)newRect.getX(), (int)newRect.getY(), (int)newRect.getWidth(), (int)newRect.getHeight());
 			g.setColor(Color.black);
-			g.drawString("New Game", (int) newPos.getX(), (int) newPos.getY());
+			g.drawString(newString, (int) newPos.getX(), (int) newPos.getY());
 		}
 		else if(helpBtnActive){
 			g.fillRect((int)helpRect.getX(), (int)helpRect.getY(), (int)helpRect.getWidth(), (int)helpRect.getHeight());
 			g.setColor(Color.black);
-			g.drawString("Help", (int) helpPos.getX(), (int) helpPos.getY());
+			g.drawString(helpString, (int) helpPos.getX(), (int) helpPos.getY());
 		}
 		else if(quitBtnActive){
 			g.fillRect((int)quitRect.getX(), (int)quitRect.getY(), (int)quitRect.getWidth(), (int)quitRect.getHeight());
 			g.setColor(Color.black);
-			g.drawString("Quit", (int)quitPos.getX(), (int)quitPos.getY());
+			g.drawString(quitString, (int)quitPos.getX(), (int)quitPos.getY());
 		}
+	}
+
+	public void setMenuString(String menuString){
+		this.menuString = menuString;
 	}
 }

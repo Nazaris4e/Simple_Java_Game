@@ -111,6 +111,13 @@ public class Game extends Canvas implements Runnable{
 				sound.stopGameMusic();
 				sound.stopBossMusic();
 
+					if(gameState == STATE.Menu){
+						if(Game.gameHandler.objectList.size() != 0)
+							menu.setMenuString("Paused");
+						else
+							menu.setMenuString("Menu");
+					}
+
 					if(gameState == STATE.End){
 						if(scoreManager.updateScore(new Score(hud.getScore()))) // updated score in the file score.dat
 							end.setHighScoreString("New Record!");
