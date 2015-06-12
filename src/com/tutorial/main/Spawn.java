@@ -25,15 +25,22 @@ public class Spawn {
 		else if(Game.hud.getLevel() == 6){
 			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.FastEnemy, Game.gameHandler));
 		}
-		else  if(Game.gameState == Game.STATE.Boss){
+		else if(Game.gameState == Game.STATE.Boss){
+					Game.gameHandler.clearEnemies();
+					Game.gameHandler.addObject(new BossEnemy(Game.WIDTH/2-48,-100, ID.BossEnemy, Game.gameHandler));
+				}
 
-			
-			Game.gameHandler.clearEnemies();
-			
-				Game.gameHandler.addObject(new BossEnemy(Game.WIDTH/2-48,-100, ID.BossEnemy, Game.gameHandler));
+		} // only if level changes
+
+		if(r.nextInt(1000) == 1){
+			Game.gameHandler.addObject(new HealthCoin(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.HealthCoin, 25, Game.gameHandler));
 		}
 
 
-}
+		if(r.nextInt(1000) == 1) {
+			Game.gameHandler.addObject(new ScoreCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 32), ID.ScoreCoin, 500, Game.gameHandler));
+		}
+
+
 	}
 }
