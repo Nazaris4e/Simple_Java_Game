@@ -25,26 +25,34 @@ public class Player extends GameObject{
 		if(healCounter > 0)
 			healCounter--;
 	}
-	private void collision(){
-		for(int i = 0; i < Game.gameHandler.objectList.size(); i++){
+	private void collision() {
+		for (int i = 0; i < Game.gameHandler.objectList.size(); i++) {
 			GameObject tempObject = Game.gameHandler.objectList.get(i);
-			if(tempObject.id == ID.BasicEnemy || tempObject.id == ID.FastEnemy || tempObject.id == ID.SmartEnemy){
-				if(getBounds().intersects(tempObject.getBounds())){
+			if (tempObject.id == ID.BasicEnemy || tempObject.id == ID.FastEnemy || tempObject.id == ID.SmartEnemy) {
+				if (getBounds().intersects(tempObject.getBounds())) {
 					// collision code
 					Game.hud.HEALTH -= 2;
 					Game.sound.sayOuche();
 					hurtCounter = 30;
-					if(Game.hud.HEALTH == 0)
+					if (Game.hud.HEALTH == 0)
 						hurtCounter = 0;
 				}
-			}
-			else if(tempObject.id == ID.HealthCoin){
-				if(getBounds().intersects(tempObject.getBounds())){
-					Game.hud.HEALTH += ((HealthCoin)tempObject).getHealthValue();
+			} else if (tempObject.id == ID.HealthCoin) {
+				if (getBounds().intersects(tempObject.getBounds())) {
+					Game.hud.HEALTH += ((HealthCoin) tempObject).getHealthValue();
 					Game.gameHandler.removeObject(tempObject);
 					Game.sound.playHealthSound();
 					healCounter = 30;
-					if(Game.hud.HEALTH == 0)
+					if (Game.hud.HEALTH == 0)
+						healCounter = 0;
+				}
+			} else if (tempObject.id == ID.ScoreCoin) {
+				if (getBounds().intersects(tempObject.getBounds())) {
+					Game.hud.setScore(Game.hud.getScore() + ((ScoreCoin) tempObject).getScoreValue());
+					Game.gameHandler.removeObject(tempObject);
+					Game.sound.playHealthSound();
+					healCounter = 30;
+					if (Game.hud.HEALTH == 0)
 						healCounter = 0;
 				}
 			}
