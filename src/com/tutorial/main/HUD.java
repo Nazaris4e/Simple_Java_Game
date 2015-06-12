@@ -1,14 +1,17 @@
 package com.tutorial.main;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class HUD {
 	
 	public int HEALTH = 100;
 	public static int BossLevel = 7;
 	private int greenValue = 255;
-	
+	private Rectangle hudRect = new Rectangle(15,15,200,32);
+	private Point scorePos = new Point(15, 64);
+	private Point levelPos = new Point(15, 80);
+	private String scoreString = "Score: ";
+	private String levelString = "Level: ";
 	private int score = 0;
 	private int level = 1;
 		
@@ -28,15 +31,14 @@ public class HUD {
 	
 	public void render(Graphics g){
 		g.setColor(Color.gray);
-		g.fillRect(15,15,200,32);
+		g.fillRect((int)hudRect.getX(), (int)hudRect.getY(), (int)hudRect.getWidth(), (int)hudRect.getHeight());
 		g.setColor(new Color(75, greenValue, 0));
-		g.fillRect(15,15,2*HEALTH,32);
+		g.fillRect((int)hudRect.getX(), (int)hudRect.getY(), 2*HEALTH, (int)hudRect.getHeight());
 		g.setColor(Color.white);
-		g.drawRect(15,15,200,32);
-		
-		g.drawString("Score: " + score, 15, 64);
-		g.drawString("Level: " + level, 15, 80);
-		
+		g.drawRect((int) hudRect.getX(), (int) hudRect.getY(), 2 * HEALTH, (int) hudRect.getHeight());
+
+		g.drawString(scoreString + score, (int)scorePos.getX(), (int)scorePos.getY());
+		g.drawString(levelString + level, (int)levelPos.getX(), (int)levelPos.getY());
 	}
 	
 	public void setScore(int score){
