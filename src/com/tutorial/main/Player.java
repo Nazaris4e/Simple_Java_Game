@@ -31,13 +31,12 @@ public class Player extends GameObject{
 					Game.hud.HEALTH -= 2;
 					Game.sound.sayOuche();
 					hurtCounter = 30;
-					if(Game.hud.HEALTH == 0)
+					if (Game.hud.HEALTH == 0)
 						hurtCounter = 0;
 				}
-			}
-			else if(tempObject.id == ID.HealthCoin){
-				if(getBounds().intersects(tempObject.getBounds())){
-					Game.hud.HEALTH += ((HealthCoin)tempObject).getHealthValue();
+			} else if (tempObject.id == ID.HealthCoin) {
+				if (getBounds().intersects(tempObject.getBounds())) {
+					Game.hud.HEALTH += ((HealthCoin) tempObject).getHealthValue();
 					Game.gameHandler.removeObject(tempObject);
 				}
 			}
