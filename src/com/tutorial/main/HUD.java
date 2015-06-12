@@ -35,7 +35,7 @@ public class HUD {
 		g.setColor(new Color(75, greenValue, 0));
 		g.fillRect((int)hudRect.getX(), (int)hudRect.getY(), 2*HEALTH, (int)hudRect.getHeight());
 		g.setColor(Color.white);
-		g.drawRect((int) hudRect.getX(), (int) hudRect.getY(), 2 * HEALTH, (int) hudRect.getHeight());
+		g.drawRect((int) hudRect.getX(), (int) hudRect.getY(), (int)hudRect.getWidth(), (int) hudRect.getHeight());
 
 		g.drawString(scoreString + score, (int)scorePos.getX(), (int)scorePos.getY());
 		g.drawString(levelString + level, (int)levelPos.getX(), (int)levelPos.getY());
