@@ -6,6 +6,7 @@ public class Spawn {
 
 	private Random r = new Random();
 	private int prevLevel = -1;
+	GameObject tempCoin = null;
 
 	public void tick(){
 		if(Game.hud.getLevel() != prevLevel){ // do only when level changes
@@ -32,13 +33,28 @@ public class Spawn {
 
 		} // only if level changes
 
-		if(r.nextInt(1000) == 1){
-			Game.gameHandler.addObject(new HealthCoin(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-64), ID.HealthCoin, (r.nextInt(4)+2)*5, Game.gameHandler));
-		}
-		if(r.nextInt(1000) == 1) {
-			Game.gameHandler.addObject(new ScoreCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), ID.ScoreCoin, (r.nextInt(5)+1)*100, Game.gameHandler));
-		}
+		// throw coin until in is not intersecting other coins or HUD
+		if(r.nextInt(500) == 0){
+			do {
+				if(r.nextInt(2) == 0)
+					tempCoin = new HealthCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), ID.HealthCoin, (r.nextInt(4) + 2) * 5, Game.gameHandler);
+				else
+					tempCoin = new ScoreCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), ID.ScoreCoin, (r.nextInt(5) + 1) * 100, Game.gameHandler);
 
+				for (GameObject gameObject : Game.gameHandler.objectList)
+					if (gameObject.getId() == ID.HealthCoin || gameObject.getId() == ID.ScoreCoin) {
+							if(gameObject.getBounds().intersects(tempCoin.getBounds())){
+								tempCoin = null;
+								break;
+							}
+					}
+				if(tempCoin != null && Game.hud.getBounds().intersects(tempCoin.getBounds())){
+					tempCoin = null;
+				}
 
+			} while(tempCoin == null);
+			Game.gameHandler.addObject(tempCoin);
+			tempCoin = null;
+		}
 	}
 }

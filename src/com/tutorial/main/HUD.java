@@ -50,8 +50,9 @@ public class HUD {
 	public void setLevel(int level){
 		this.level = level;
 	}
-	public int getLevel(){
-		return level;
-	}	
-	
+	public int getLevel() { return level; }
+	public Rectangle getBounds(){
+		return hudRect;
+	}
+
 }
