@@ -33,10 +33,8 @@ public class Spawn {
 		} // only if level changes
 
 		if(r.nextInt(1000) == 1){
-			Game.gameHandler.addObject(new HealthCoin(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-64), ID.HealthCoin, (r.nextInt(5)+1)*5, Game.gameHandler));
+			Game.gameHandler.addObject(new HealthCoin(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-64), ID.HealthCoin, (r.nextInt(4)+2)*5, Game.gameHandler));
 		}
-
-
 		if(r.nextInt(1000) == 1) {
 			Game.gameHandler.addObject(new ScoreCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), ID.ScoreCoin, (r.nextInt(5)+1)*100, Game.gameHandler));
 		}

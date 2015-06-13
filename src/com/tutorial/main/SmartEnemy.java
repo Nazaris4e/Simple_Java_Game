@@ -6,26 +6,19 @@ import java.awt.Rectangle;
 
 public class SmartEnemy extends GameObject{
 
-	private GameObject player;
-	
 	public SmartEnemy(int x, int y, ID id, Handler myHandler) {
 		super(x, y, id, myHandler);
 	
-		for(int i = 0; i < Game.gameHandler.objectList.size(); i++)
-			if (Game.gameHandler.objectList.get(i).getId() == ID.Player)
-				player = Game.gameHandler.objectList.get(i);
-
 		velX = 5;
 		velY = 5;
 		width = 16;
 		height = 16;
 	}
 
-
 	public void tick() {
 		
-		float diffX = x - player.getX() - width/2;
-		float diffY = y - player.getY() - height/2;
+		float diffX = x - Game.player.getX() - width/2;
+		float diffY = y - Game.player.getY() - height/2;
 		float distance = (float)Math.sqrt(diffX*diffX+diffY*diffY);
 		velX = (int) (-3*diffX/distance);
 		velY = (int) (-3*diffY/distance);
@@ -38,10 +31,8 @@ public class SmartEnemy extends GameObject{
 
 	}
 
-
 	public void render(Graphics g) {
 		g.setColor(Color.orange);
 		g.fillRect(x, y, width, height);
 	}
-
 }
