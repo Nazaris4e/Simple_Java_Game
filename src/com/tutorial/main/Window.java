@@ -23,7 +23,6 @@ public class Window extends Canvas {
 		frame.add(game);
 //		frame.setFocusable(true);
 		frame.setVisible(true);
-//		playMusic();
 
 
 		game.start();

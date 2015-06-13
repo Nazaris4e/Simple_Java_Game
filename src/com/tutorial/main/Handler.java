@@ -12,15 +12,10 @@ public class Handler {
 			GameObject tempObject = objectList.get(i);
 			tempObject.tick();
 		}
-		
 	}
 	public void render(Graphics g){
-		for(int i = 0; i < objectList.size(); i++){
-			if(objectList.size() != 0){
-				GameObject tempObject = objectList.get(i);
+		for(GameObject tempObject : objectList)
 				tempObject.render(g);
-			}
-		}
 	}
 	
 	public void addObject(GameObject object){
@@ -30,12 +25,10 @@ public class Handler {
 		objectList.remove(object);
 	}
 	public void clearEnemies(){
-		for(int i = 0; i < objectList.size(); i++){
-			GameObject tempObject = objectList.get(i);
+		for(GameObject tempObject : objectList){
 			if(tempObject.getId() == ID.Player){
 			objectList.clear();
-//			addObject(new Player(tempObject.getX(),tempObject.getY(), ID.Player));				
-			addObject(Game.player);				
+			addObject(Game.player);
 			}
 		}
 	}

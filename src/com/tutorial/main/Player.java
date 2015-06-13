@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 public class Player extends GameObject{
 	private int hurtCounter = 0;
 	private int healCounter = 0;
-	public Player(int x, int y, ID id, Handler myHandler) {
-		super(x, y, id, myHandler);
+	public Player(int x, int y, Handler myHandler) {
+		super(x, y, ID.Player, myHandler);
 		height = 32;
 		width = 32;
 	}
@@ -24,6 +24,7 @@ public class Player extends GameObject{
 		if(healCounter > 0)
 			healCounter--;
 	}
+
 	private void collision() {
 		for (int i = 0; i < Game.gameHandler.objectList.size(); i++) {
 			GameObject tempObject = Game.gameHandler.objectList.get(i);
@@ -57,6 +58,10 @@ public class Player extends GameObject{
 			}
 		}
 	}
+
+
+
+
 
 	public void render(Graphics g){
 		if(hurtCounter > 0)

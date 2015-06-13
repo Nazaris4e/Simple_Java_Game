@@ -12,23 +12,23 @@ public class Spawn {
 		if(Game.hud.getLevel() != prevLevel){ // do only when level changes
 			prevLevel = Game.hud.getLevel();
 		if(Game.hud.getLevel() == 2)
-			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy, Game.gameHandler));
+			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), Game.gameHandler));
 				else if(Game.hud.getLevel() == 3){
-			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy, Game.gameHandler));
-			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.BasicEnemy, Game.gameHandler));
+			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), Game.gameHandler));
+			Game.gameHandler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), Game.gameHandler));
 		}
 		else if(Game.hud.getLevel() == 4){
-			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.FastEnemy, Game.gameHandler));
+			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), Game.gameHandler));
 		}
 		else if(Game.hud.getLevel() == 5){
-			Game.gameHandler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.SmartEnemy, Game.gameHandler));
+			Game.gameHandler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), Game.gameHandler));
 		}
 		else if(Game.hud.getLevel() == 6){
-			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), ID.FastEnemy, Game.gameHandler));
+			Game.gameHandler.addObject(new FastEnemy(r.nextInt(Game.WIDTH-32),r.nextInt(Game.HEIGHT-32), Game.gameHandler));
 		}
 		else if(Game.gameState == Game.STATE.Boss){
 					Game.gameHandler.clearEnemies();
-					Game.gameHandler.addObject(new BossEnemy(Game.WIDTH/2-48,-100, ID.BossEnemy, Game.gameHandler));
+					Game.gameHandler.addObject(new BossEnemy(Game.WIDTH/2-48,-100, Game.gameHandler));
 				}
 
 		} // only if level changes
@@ -37,9 +37,9 @@ public class Spawn {
 		if(r.nextInt(500) == 0){
 			do {
 				if(r.nextInt(2) == 0)
-					tempCoin = new HealthCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), ID.HealthCoin, (r.nextInt(4) + 2) * 5, Game.gameHandler);
+					tempCoin = new HealthCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), (r.nextInt(4) + 2) * 5, Game.gameHandler);
 				else
-					tempCoin = new ScoreCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), ID.ScoreCoin, (r.nextInt(5) + 1) * 100, Game.gameHandler);
+					tempCoin = new ScoreCoin(r.nextInt(Game.WIDTH - 32), r.nextInt(Game.HEIGHT - 64), (r.nextInt(5) + 1) * 100, Game.gameHandler);
 
 				for (GameObject gameObject : Game.gameHandler.objectList)
 					if (gameObject.getId() == ID.HealthCoin || gameObject.getId() == ID.ScoreCoin) {

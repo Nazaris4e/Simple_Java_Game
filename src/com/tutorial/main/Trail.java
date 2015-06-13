@@ -14,8 +14,8 @@ public class Trail extends GameObject{
 	private float transparencyDecrease;
 
 	
-	public Trail(int x, int y, ID id, Color color, int width, int height, float transparency, float transparencyDecrease, Handler myHandler) {
-		super(x, y, id, myHandler);
+	public Trail(int x, int y, Color color, int width, int height, float transparency, float transparencyDecrease, Handler myHandler) {
+		super(x, y, ID.Trail, myHandler);
 		this.color = color;
 		this.width = width;
 		this.height = height;

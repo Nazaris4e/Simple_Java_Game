@@ -134,39 +134,25 @@ else if(Game.gameState == Game.STATE.End){
 	}
 
 }	
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-	}
+}
 	
 	public void keyReleased(KeyEvent e){
 		int key = e.getKeyCode();
 
-		
 		for(int i = 0; i < Game.gameHandler.objectList.size(); i++){
 			GameObject tempObject = Game.gameHandler.objectList.get(i);
-			
+
 			if(tempObject.getId() == ID.Player){
 				if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) keyDown[0] = false; //tempObject.setVelY(0);
 				if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) keyDown[1] = false; //tempObject.setVelY(0);
 				if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) keyDown[2] = false; //tempObject.setVelX(0);
 				if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) keyDown[3] = false; //tempObject.setVelX(0);
-				
+
 				if(!keyDown[0] && !keyDown[1]) tempObject.setVelY(0);
 				if(!keyDown[2] && !keyDown[3]) tempObject.setVelX(0);
-				
+
 			}
-			
-		}		
+		}
+
 	}
 }

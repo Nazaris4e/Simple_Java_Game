@@ -4,8 +4,8 @@ import java.awt.*;
 public class HealthCoin extends GameObject{
     private int healthValue;
     private int lifeTime = 750;
-    public HealthCoin(int x, int y, ID id, int healthValue, Handler myHandler) {
-        super(x, y, id, myHandler);
+    public HealthCoin(int x, int y, int healthValue, Handler myHandler) {
+        super(x, y, ID.HealthCoin, myHandler);
         velX = 0;
         velY = 0;
         width = 32;

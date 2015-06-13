@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 
 public class SmartEnemy extends GameObject{
 
-	public SmartEnemy(int x, int y, ID id, Handler myHandler) {
-		super(x, y, id, myHandler);
+	public SmartEnemy(int x, int y, Handler myHandler) {
+		super(x, y, ID.SmartEnemy, myHandler);
 	
 		velX = 5;
 		velY = 5;
@@ -27,7 +27,7 @@ public class SmartEnemy extends GameObject{
 		y += velY;
 		if(y <= 0 || y >= Game.HEIGHT-height) velY *= -1;
 		if(x <= 0 || x >= Game.WIDTH-width) velX *= -1;
-		Game.gameHandler.addObject(new Trail(x, y, ID.Trail, Color.orange, width, height, 1.0f, 0.02f, Game.gameHandler));
+		Game.gameHandler.addObject(new Trail(x, y, Color.orange, width, height, 1.0f, 0.02f, Game.gameHandler));
 
 	}
 

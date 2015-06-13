@@ -12,8 +12,8 @@ public class MenuParticle extends GameObject{
 	private Random r = new Random();
 	private Color color;
 	
-	public MenuParticle(int x, int y, ID id, Handler myHandler) {
-		super(x, y, id, myHandler);
+	public MenuParticle(int x, int y, Handler myHandler) {
+		super(x, y, ID.MenuParticle, myHandler);
 		velX = r.nextInt(8)-4;
 		velY = r.nextInt(8)-4;
 		width = 16;
@@ -31,7 +31,7 @@ public class MenuParticle extends GameObject{
 		y += velY;
 		if(y <= 0 || y >= Game.HEIGHT-height) velY *= -1;
 		if(x <= 0 || x >= Game.WIDTH-width) velX *= -1;
-		Game.menuHandler.addObject(new Trail(x, y, ID.Trail, color, width, height, 0.5f, 0.02f, Game.menuHandler));
+		Game.menuHandler.addObject(new Trail(x, y, color, width, height, 0.5f, 0.02f, Game.menuHandler));
 
 	}
 

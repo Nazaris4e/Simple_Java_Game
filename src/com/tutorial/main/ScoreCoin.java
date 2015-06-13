@@ -4,8 +4,8 @@ import java.awt.*;
 public class ScoreCoin extends GameObject{
     private int scoreValue;
     private int lifeTime = 750;
-    public ScoreCoin(int x, int y, ID id, int scoreValue, Handler myHandler) {
-        super(x, y, id, myHandler);
+    public ScoreCoin(int x, int y, int scoreValue, Handler myHandler) {
+        super(x, y, ID.ScoreCoin, myHandler);
         velX = 0;
         velY = 0;
         width = 32;

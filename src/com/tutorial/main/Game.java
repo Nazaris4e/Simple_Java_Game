@@ -32,7 +32,7 @@ public class Game extends Canvas implements Runnable{
 		help = new Help();
 		hud = new HUD();
 		end = new EndScreen();
-		player = new Player(WIDTH/2-32,HEIGHT/2-32, ID.Player, gameHandler);
+		player = new Player(WIDTH/2-32,HEIGHT/2-32, gameHandler);
 		this.addKeyListener(new KeyInput());
 		this.addMouseListener(new MouseInput());
 		this.addMouseMotionListener(new MouseMove());
@@ -106,7 +106,7 @@ public class Game extends Canvas implements Runnable{
 				if (gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Help){
 					menuHandler.objectList.clear(); // in case if I'm changing Menu and Help back and forth
 					for(int j = 0; j < 14; j++){
-						menuHandler.addObject(new MenuParticle(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.MenuParticle, menuHandler));
+						menuHandler.addObject(new MenuParticle(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), menuHandler));
 					}		
 				sound.stopGameMusic();
 				sound.stopBossMusic();
@@ -130,7 +130,7 @@ public class Game extends Canvas implements Runnable{
 					gameHandler.objectList.clear(); // clear handler only if new game 
 					menuHandler.objectList.clear(); // clear handler only if new game 
 					gameHandler.addObject(player); // must do this only in state is New Game
-					gameHandler.addObject(new BasicEnemy(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), ID.BasicEnemy, gameHandler));  // must do this only in state is New Game
+					gameHandler.addObject(new BasicEnemy(r.nextInt(WIDTH-32),r.nextInt(HEIGHT-32), gameHandler));  // must do this only in state is New Game
 						hud.setLevel(1);
 						hud.setScore(0);
 						hud.HEALTH=100;
